@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0">
+        <title>Web API</title>
+    </head>
+    <body id="body">
+        <button type="button" name="dark-mode" id="dark-mode" onclick='darkMode(element)'>Dark Mode</button><br>
+        <button type="button" name="light-mode" id="light-mode" onclick='lightMode(element)'>Light Mode</button>
+        <p id="demo">Hello There</p>
+
+        <script>
+            let value = 0;
+            const element = document.getElementById("body");
+            function darkMode(element){
+
+                const darkMode = {
+                "backgroundColour": "black",
+                "textColour": "white"
+            };
+
+                localStorage.setItem('darkTheme', JSON.stringify(darkMode));
+                var theme = localStorage.getItem('darkTheme');
+                darkTheme = JSON.parse(theme);
+
+                element.style.backgroundColor = darkTheme.backgroundColour;
+                element.style.color = darkTheme.textColour;
+
+                value = 0;
+            }
+
+            function lightMode(element){
+                const lightMode = {
+                    "backgroundColour": "white",
+                    "textColour": "black"
+                };
+                
+                localStorage.clear();
+                localStorage.setItem('lightTheme', JSON.stringify(lightMode));
+                var theme = localStorage.getItem('lightTheme');
+                lightTheme = JSON.parse(theme);
+                
+                element.style.backgroundColor = lightTheme.backgroundColour;
+                element.style.color = lightTheme.textColour;
+
+                value = 1;
+            }
+
+
+            window.onload = () => {
+                if (value === 0){
+                    var theme = localStorage.getItem('darkTheme');
+                    darkTheme = JSON.parse(theme);
+
+                    element.style.backgroundColor = darkTheme.backgroundColour;
+                    element.style.color = darkTheme.textColour;
+                }
+
+                else{
+                    var theme = localStorage.getItem('lightTheme');
+                    lightTheme = JSON.parse(theme);
+
+                    element.style.backgroundColor = lightTheme.backgroundColour;
+                    element.style.color = lightTheme.textColour;
+                }
+                
+            }
+            
+        </script>
+    </body>
+</html>
